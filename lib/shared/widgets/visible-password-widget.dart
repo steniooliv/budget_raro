@@ -4,9 +4,11 @@ class VisibleWidget extends StatelessWidget {
   
   final bool visible;
   final Function()? onPressed;
-  
+  final Color? color;
+
   const VisibleWidget({
     Key ? key,
+    this.color,
     required this.visible,
     required this.onPressed,
   }) : super(key: key);
@@ -16,7 +18,7 @@ class VisibleWidget extends StatelessWidget {
     return IconButton(
       icon: Icon(
         visible ? Icons.visibility_off : Icons.visibility,
-        color: Colors.grey,
+        color: color,
       ),
       onPressed: onPressed,
     );
