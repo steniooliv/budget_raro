@@ -107,6 +107,7 @@ class TextStyles {
   static final textButton = GoogleFonts.roboto(
     fontSize: 14,
     fontWeight: FontWeight.w500,
+    height: 24,
     color: AppColors.white,
   );
   static final balance = GoogleFonts.roboto(
