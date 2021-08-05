@@ -150,4 +150,14 @@ class TextStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.green,
   );
+  static final drawerSection = GoogleFonts.roboto(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: AppColors.black.withOpacity(0.54),
+  );
+  static final drawerOption = GoogleFonts.roboto(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: AppColors.black.withOpacity(0.87),
+  );
 }
