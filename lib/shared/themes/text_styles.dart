@@ -123,7 +123,6 @@ class TextStyles {
   static final tabDisable = GoogleFonts.roboto(
     fontSize: 16,
     fontWeight: FontWeight.w500,
-    height: 19,
     color: AppColors.white.withOpacity(0.60),
   );
   static final transactionTitle = GoogleFonts.roboto(
