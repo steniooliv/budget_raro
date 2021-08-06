@@ -160,4 +160,11 @@ class TextStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.black.withOpacity(0.87),
   );
+  static final components = GoogleFonts.roboto(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: AppColors.black.withOpacity(0.54),
+  );
+
+
 }
