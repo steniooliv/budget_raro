@@ -165,6 +165,14 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.black.withOpacity(0.54),
   );
-
-
+  static final inputTextMedium = GoogleFonts.roboto(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: AppColors.purple,
+  );
+  static final subtitle1 = GoogleFonts.roboto(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: AppColors.purple,
+  );
 }

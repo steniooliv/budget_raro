@@ -1,4 +1,4 @@
-import 'package:budget_raro/shared/models/transactions_model.dart';
+import 'package:budget_raro/shared/models/transaction_model.dart';
 import 'package:budget_raro/shared/themes/app_colors.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ class DropdownTransactionsButton extends StatefulWidget {
     required this.transactions,
   }) : super(key: key);
   
-  final List<TransactionsModel> transactions;
+  final List<TransactionModel> transactions;
 
   @override
   _DropdownTransactionsButtonState createState() => _DropdownTransactionsButtonState();
@@ -17,11 +17,11 @@ class DropdownTransactionsButton extends StatefulWidget {
 
 class _DropdownTransactionsButtonState extends State<DropdownTransactionsButton> { 
   
-  TransactionsModel? transactionSelected;
+  TransactionModel? transactionSelected;
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<TransactionsModel>(
+    return DropdownButton<TransactionModel>(
       menuMaxHeight: MediaQuery.of(context).size.height/2,
       value: transactionSelected,
       hint: Align(
@@ -41,21 +41,21 @@ class _DropdownTransactionsButtonState extends State<DropdownTransactionsButton>
         height: 1,
         color: Colors.black.withOpacity(0.42),
       ),
-      onChanged: (TransactionsModel? selected) {
+      onChanged: (TransactionModel? selected) {
         setState(() {
           transactionSelected = widget.transactions
-          .firstWhere((e) => e.type == selected!.type);
+          .firstWhere((e) => e.tag == selected!.tag);
         });
       },
       selectedItemBuilder: (BuildContext context) {
         return widget.transactions
-        .map<Widget>((TransactionsModel item) {
+        .map<Widget>((TransactionModel item) {
           return Align(
             alignment: Alignment.centerLeft,
             child: Container(
               width: 220,
               child: Text(
-                item.type,
+                item.tag,
                 style: TextStyles.components,
               )
             )
@@ -63,9 +63,9 @@ class _DropdownTransactionsButtonState extends State<DropdownTransactionsButton>
         }).toList();
       },
       items: widget.transactions
-      .map<DropdownMenuItem<TransactionsModel>>(
-        (TransactionsModel transaction) {
-        return DropdownMenuItem<TransactionsModel>(
+      .map<DropdownMenuItem<TransactionModel>>(
+        (TransactionModel transaction) {
+        return DropdownMenuItem<TransactionModel>(
           value: transaction,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -75,13 +75,16 @@ class _DropdownTransactionsButtonState extends State<DropdownTransactionsButton>
                 height: 26,
                 width: 26,
                 child: Image(
-                  image: AssetImage(transaction.image),
+                  image: AssetImage(
+                    "image/icons/${transaction.tag
+                    .replaceAll('çã', 'ca')}.png"
+                  ),
                   width: 24,
                   height: 24,
                 ), 
               ),
               SizedBox(width: 8),
-              Text(transaction.type),
+              Text(transaction.tag),
             ],
           ),
         );
