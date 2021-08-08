@@ -11,6 +11,7 @@ class AppColors {
   static final whiteSlogan = Color(0xFFFDFDFD);
   static final black = Color(0xFF000000);
   static final grey = Color(0xFFC4C4C4);
+  static final face = Color(0xFF3A5B96);
 
   static final whiteDropDown = Color(0xFFFFFFFF).withOpacity(0.1);
 
