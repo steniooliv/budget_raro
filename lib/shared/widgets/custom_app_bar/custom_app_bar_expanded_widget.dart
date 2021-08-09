@@ -47,10 +47,11 @@ class _CustomAppBarExpandedWidgetState
                 children: [
                   IconButton(
                       onPressed: () {
-                        widget.drawerKey.currentState!.openDrawer();
+                        Navigator.pop(context);
+                        // widget.drawerKey.currentState!.openDrawer();
                       },
                       icon: Icon(
-                        Icons.menu,
+                        Icons.arrow_back,
                         color: AppColors.white,
                       )),
                   Spacer(),
