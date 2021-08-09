@@ -22,7 +22,7 @@ class _DailyBalanceCardState extends State<DailyBalanceCard> {
     return GestureDetector(
       onTap: () {}, // NAVEGAR PARA TODAS AS TRANSAÇÕES;
       child: BaseCardWidget(
-        margin: EdgeInsets.all(16),
+        margin: EdgeInsets.symmetric(horizontal: 16),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(

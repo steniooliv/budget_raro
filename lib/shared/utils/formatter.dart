@@ -7,4 +7,9 @@ String real(value) {
     return formatter.format(value);
   }
 
+String data(value) {
+  DateFormat formatter = DateFormat('dd/MM/yyyy');
+  return formatter.format(value);
+}
+
 }
