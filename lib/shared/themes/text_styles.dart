@@ -96,6 +96,16 @@ class TextStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.white,
   );
+  static final googleButton = GoogleFonts.roboto(
+    fontSize: 13,
+    fontWeight: FontWeight.w500,  
+    color: Color(0x8A000000),
+  );
+  static final facebookButton = GoogleFonts.roboto(
+    fontSize: 13,
+    fontWeight: FontWeight.w500,  
+    color: AppColors.white,
+  );
   static final balance = GoogleFonts.roboto(
     fontSize: 26,
     fontWeight: FontWeight.w700,
