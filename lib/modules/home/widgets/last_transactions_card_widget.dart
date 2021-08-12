@@ -1,13 +1,16 @@
+import 'package:budget_raro/shared/models/transaction_model.dart';
+import 'package:budget_raro/shared/widgets/transactions_card/transactions_listbuilder.dart';
+import 'package:flutter/material.dart';
 import 'package:budget_raro/shared/themes/app_colors.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
 import 'package:budget_raro/shared/utils/formatter.dart';
 import 'package:budget_raro/shared/widgets/base-card-widget.dart';
-import 'package:flutter/material.dart';
 
 class LastTransactionsCard extends StatelessWidget {
   const LastTransactionsCard({
     Key? key,
     required this.lastTransactions,
+    required this.subtotal,
   }) : super(key: key);
   final List<TransactionModel> lastTransactions;
   final double subtotal;
