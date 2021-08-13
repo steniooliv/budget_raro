@@ -79,17 +79,7 @@ class CustomButton extends StatelessWidget {
     required this.onTap,
   }) : super(key: key);
 
-  const CustomButton.inserirEntrada({
-    Key? key,
-    this.buttonHeight = 50,
-    this.buttonWidth = 123,
-    this.buttonContent = '  INSERIR',
-    this.icon = Icons.add,
-    this.aux = 2,
-    required this.onTap,
-  }) : super(key: key);
-
-  const CustomButton.inserirSaida({
+  const CustomButton.inserirTransacao({
     Key? key,
     this.buttonHeight = 50,
     this.buttonWidth = 123,
