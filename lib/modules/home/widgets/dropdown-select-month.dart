@@ -10,7 +10,21 @@ class DropDownSelectMonth extends StatefulWidget {
 }
 
 class _DropDownSelectMonthState extends State<DropDownSelectMonth> {
-  String dropdownValue = 'AGO/21'; // RECEBE DADO DINÂMICO DO MÊS CORRENTE ou DE ÚLTIMO COM OPERAÇÃO
+  final Map<int, String> months = {
+    1: "JAN",
+    2: "FEV",
+    3: "MAR",
+    4: "ABR",
+    5: "MAI",
+    6: "JUN",
+    7: "JUL",
+    8: "AGO",
+    9: "SET",
+    10: "OUT",
+    11: "NOV",
+    12: "DEZ",
+  };
+  late String? dropdownValue = months[DateTime.now().month];//months[widget.currentMonth];
 
   @override
   Widget build(BuildContext context) {
@@ -62,10 +76,7 @@ class _DropDownSelectMonthState extends State<DropDownSelectMonth> {
               dropdownValue = newValue!;
             });
           },
-          items: <String>[     // RECEBE LISTA DE MESES COM REGISTRO DE OPERAÇÕES DO CLIENTE
-            'AGO/21', 'JUL/21', 'JUN/21', 'MAI/21',
-            'ABR/21', 'MAR/21', 'FEV/21', 'JAN/21', 'DEZ/20'
-            ] 
+          items: months.values
               .map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
