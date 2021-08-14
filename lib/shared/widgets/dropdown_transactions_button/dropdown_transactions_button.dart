@@ -1,15 +1,23 @@
 import 'package:budget_raro/shared/models/transaction_model.dart';
 import 'package:budget_raro/shared/themes/app_colors.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
+import 'package:budget_raro/shared/widgets/dropdown_transactions_button/transaction_types.dart';
 import 'package:flutter/material.dart';
 
+
 class DropdownTransactionsButton extends StatefulWidget {
-  DropdownTransactionsButton({
+  
+  DropdownTransactionsButton.entry({
     Key? key,
-    required this.transactions,
+    this.transactionsType = true,
   }) : super(key: key);
   
-  final List<TransactionModel> transactions;
+  DropdownTransactionsButton.out({
+    Key? key,
+    this.transactionsType = false,
+  }) : super(key: key);
+  
+  final bool transactionsType;
 
   @override
   _DropdownTransactionsButtonState createState() => _DropdownTransactionsButtonState();
@@ -17,11 +25,14 @@ class DropdownTransactionsButton extends StatefulWidget {
 
 class _DropdownTransactionsButtonState extends State<DropdownTransactionsButton> { 
   
-  TransactionModel? transactionSelected;
+  TransactionTypes? transactionSelected;
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<TransactionModel>(
+    List<TransactionTypes> transactions = widget.transactionsType
+    ? transactionTypeIn
+    : transactionTypeOut;
+    return DropdownButton<TransactionTypes>(
       menuMaxHeight: MediaQuery.of(context).size.height/2,
       value: transactionSelected,
       hint: Align(
@@ -41,15 +52,15 @@ class _DropdownTransactionsButtonState extends State<DropdownTransactionsButton>
         height: 1,
         color: Colors.black.withOpacity(0.42),
       ),
-      onChanged: (TransactionModel? selected) {
+      onChanged: (TransactionTypes? selected) {
         setState(() {
-          transactionSelected = widget.transactions
+          transactionSelected = transactions
           .firstWhere((e) => e.tag == selected!.tag);
         });
       },
       selectedItemBuilder: (BuildContext context) {
-        return widget.transactions
-        .map<Widget>((TransactionModel item) {
+        return transactions
+        .map<Widget>((TransactionTypes item) {
           return Align(
             alignment: Alignment.centerLeft,
             child: Container(
@@ -62,10 +73,10 @@ class _DropdownTransactionsButtonState extends State<DropdownTransactionsButton>
           );
         }).toList();
       },
-      items: widget.transactions
-      .map<DropdownMenuItem<TransactionModel>>(
-        (TransactionModel transaction) {
-        return DropdownMenuItem<TransactionModel>(
+      items: transactions
+      .map<DropdownMenuItem<TransactionTypes>>(
+        (TransactionTypes transaction) {
+        return DropdownMenuItem<TransactionTypes>(
           value: transaction,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,8 +87,7 @@ class _DropdownTransactionsButtonState extends State<DropdownTransactionsButton>
                 width: 26,
                 child: Image(
                   image: AssetImage(
-                    "image/icons/${transaction.tag
-                    .replaceAll('çã', 'ca')}.png"
+                    transaction.icon
                   ),
                   width: 24,
                   height: 24,
@@ -92,3 +102,20 @@ class _DropdownTransactionsButtonState extends State<DropdownTransactionsButton>
     );
   }
 }
+
+List<TransactionTypes> transactionTypeIn = [
+  TransactionTypes(tag: "Pix", icon: "assets/images/icons/Pix.png"),
+  TransactionTypes(tag: "Dinheiro", icon: "assets/images/icons/Dinheiro.png"),
+  TransactionTypes(tag: "Boleto", icon: "assets/images/icons/Boleto.png"),
+  TransactionTypes(tag: "Ted", icon: "assets/images/icons/Ted.png"),
+  TransactionTypes(tag: "Doc", icon: "assets/images/icons/Doc.png"),
+];
+
+List<TransactionTypes> transactionTypeOut = [
+  TransactionTypes(tag: "Refeição", icon: "assets/images/icons/Refeicao.png"),
+  TransactionTypes(tag: "Transporte", icon: "assets/images/icons/Transporte.png"),
+  TransactionTypes(tag: "Educação", icon: "assets/images/icons/Educacao.png"),
+  TransactionTypes(tag: "Viagem", icon: "assets/images/icons/Viagem.png"),
+  TransactionTypes(tag: "Pagamentos", icon: "assets/images/icons/Pagamentos.png"),
+  TransactionTypes(tag: "Outro", icon: "assets/images/icons/Outro.png"),
+];
