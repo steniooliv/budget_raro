@@ -80,7 +80,12 @@ class TextStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.black.withOpacity(0.38),
   );
-  static final ag = GoogleFonts.roboto(
+  static final body2ho = GoogleFonts.roboto(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: AppColors.black.withOpacity(0.87),
+  );
+  static final body3 = GoogleFonts.roboto(
     fontSize: 16,
     fontWeight: FontWeight.w400,
     color: AppColors.purple,
@@ -108,7 +113,7 @@ class TextStyles {
   );
   static final googleButton = GoogleFonts.roboto(
     fontSize: 13,
-    fontWeight: FontWeight.w500,  
+    fontWeight: FontWeight.w500,
     color: Color(0x8A000000),
   );
   static final buttonSmall = GoogleFonts.roboto(
@@ -118,7 +123,7 @@ class TextStyles {
   );
   static final facebookButton = GoogleFonts.roboto(
     fontSize: 13,
-    fontWeight: FontWeight.w500,  
+    fontWeight: FontWeight.w500,
     color: AppColors.white,
   );
   static final balance = GoogleFonts.roboto(
@@ -200,4 +205,6 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.purple,
   );
+  static final buttonMedium = GoogleFonts.roboto(
+      fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.lightGrey);
 }

@@ -13,7 +13,7 @@ class CreateAccountButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         color: Colors.transparent,
-        child: Text(" Crie uma conta",style: TextStyles.ag,), 
+        child: Text(" Crie uma conta",style: TextStyles.body3,), 
       ), 
     ); 
   }
