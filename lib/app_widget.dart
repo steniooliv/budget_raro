@@ -3,6 +3,7 @@ import 'package:budget_raro/modules/edit/edit_page.dart';
 import 'package:budget_raro/modules/error/error_page.dart';
 import 'package:budget_raro/modules/home/home_page.dart';
 import 'package:budget_raro/modules/login/login_page.dart';
+import 'package:budget_raro/modules/onboarding/onboarding_page.dart';
 import 'package:budget_raro/modules/profile/profile_page.dart';
 import 'package:budget_raro/modules/register/register_page.dart';
 import 'package:budget_raro/modules/splash/splash_page.dart';
@@ -24,6 +25,7 @@ class AppWidget extends StatelessWidget {
         "/login": (context) => LoginPage(),
         "/register": (context) => RegisterPage(),
         "/home": (context) => HomePage(),
+        "/onboarding": (context) => OnboardingPage(),
         "/error": (context) => ErrorPage(),
         "/transactions": (context) => TransactionsPage(),
         "/create": (context) => CreatePage(),
