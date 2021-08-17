@@ -1,6 +1,8 @@
 import 'package:budget_raro/app_widget.dart';
+import 'package:budget_raro/app_widget_module.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 void main() {
-  runApp(AppWidget());
+  runApp(ModularApp(module: AppWidgetModule(), child: AppWidget()));
 }
