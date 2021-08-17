@@ -1,13 +1,13 @@
+import 'package:budget_raro/shared/widgets/custom_app_bar_expanded_widget.dart';
+import 'package:budget_raro/shared/widgets/dropdown_transactions_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:budget_raro/shared/models/transaction_model.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
 import 'package:budget_raro/shared/widgets/base-card-widget.dart';
-import 'package:budget_raro/shared/widgets/button_widget/button_widget.dart';
+import 'package:budget_raro/shared/widgets/button_widget.dart';
 import 'package:budget_raro/shared/widgets/custom-text-form-field.dart';
-import 'package:budget_raro/shared/widgets/custom_app_bar/custom_app_bar_expanded_widget.dart';
-import 'package:budget_raro/shared/widgets/drawer/drawer_widget.dart';
-import 'package:budget_raro/shared/widgets/dropdown_transactions_button/dropdown_transactions_button.dart';
+import 'package:budget_raro/shared/widgets/drawer_widget.dart';
 
 class CreatePage extends StatefulWidget {
   final String type;
@@ -23,8 +23,6 @@ class CreatePage extends StatefulWidget {
 
 class _CreatePageState extends State<CreatePage> {
   DateTime _date = DateTime.now();
-
-  List<TransactionModel> _transactions = [];
 
   GlobalKey<ScaffoldState> _key = GlobalKey();
 
@@ -58,10 +56,10 @@ class _CreatePageState extends State<CreatePage> {
                     height: 24,
                   ),
                   Container(
-                    width: double.maxFinite,
-                    child:
-                        DropdownTransactionsButton(transactions: _transactions),
-                  ),
+                      width: double.maxFinite,
+                      child: widget.type == 'Entrada'
+                          ? DropdownTransactionsButton.entry()
+                          : DropdownTransactionsButton.out()),
                   SizedBox(
                     height: 24,
                   ),

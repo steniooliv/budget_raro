@@ -1,8 +1,8 @@
 import 'package:budget_raro/shared/widgets/base-card-widget.dart';
-import 'package:budget_raro/shared/widgets/button_widget/button_widget.dart';
+import 'package:budget_raro/shared/widgets/button_widget.dart';
 import 'package:budget_raro/shared/widgets/custom-text-form-field.dart';
-import 'package:budget_raro/shared/widgets/custom_app_bar/custom_app_bar_expanded_widget.dart';
-import 'package:budget_raro/shared/widgets/drawer/drawer_widget.dart';
+import 'package:budget_raro/shared/widgets/custom_app_bar_expanded_widget.dart';
+import 'package:budget_raro/shared/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
