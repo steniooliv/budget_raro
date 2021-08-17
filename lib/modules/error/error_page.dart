@@ -1,7 +1,7 @@
 import 'package:budget_raro/shared/themes/text_styles.dart';
-import 'package:budget_raro/shared/widgets/button_widget/button_widget.dart';
-import 'package:budget_raro/shared/widgets/custom_app_bar/custom_app_bar_widget.dart';
-import 'package:budget_raro/shared/widgets/drawer/drawer_widget.dart';
+import 'package:budget_raro/shared/widgets/button_widget.dart';
+import 'package:budget_raro/shared/widgets/custom_app_bar_widget.dart';
+import 'package:budget_raro/shared/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 
 class ErrorPage extends StatefulWidget {
@@ -31,13 +31,14 @@ class _ErrorPageState extends State<ErrorPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Erro na\nconexão",
+            Text(
+              "Erro na\nconexão",
               style: TextStyles.h3,
               textAlign: TextAlign.left,
             ),
             SizedBox(height: 26),
             CustomButton.tentar(
-              onTap: (){}, //INSERIR NAVEGAÇÃO.
+              onTap: () {}, //INSERIR NAVEGAÇÃO.
             )
           ],
         ),

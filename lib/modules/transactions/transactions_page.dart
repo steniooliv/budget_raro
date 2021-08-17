@@ -1,7 +1,7 @@
 import 'package:budget_raro/shared/models/transaction_model.dart';
-import 'package:budget_raro/shared/widgets/button_widget/button_widget.dart';
-import 'package:budget_raro/shared/widgets/custom_app_bar/custom_app_bar_balance_widget.dart';
-import 'package:budget_raro/shared/widgets/transactions_card/transactions_card_widget.dart';
+import 'package:budget_raro/shared/widgets/button_widget.dart';
+import 'package:budget_raro/shared/widgets/custom_app_bar_balance_widget.dart';
+import 'package:budget_raro/shared/widgets/transactions_card_widget.dart';
 import 'package:flutter/material.dart';
 
 class TransactionsPage extends StatefulWidget {
@@ -12,7 +12,6 @@ class TransactionsPage extends StatefulWidget {
 }
 
 class _TransactionsPageState extends State<TransactionsPage> {
-  
   final PageController controller = PageController(initialPage: 0);
   final List<TransactionModel> transactionTest = [];
   String valor = "0,00";
@@ -23,7 +22,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
   }
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     GlobalKey<ScaffoldState> _key = GlobalKey();
     return Scaffold(
       appBar: CustomAppBarBalanceWidget(
@@ -31,52 +30,46 @@ class _TransactionsPageState extends State<TransactionsPage> {
         pageController: controller,
         balance: valor,
         drawerKey: _key,
-      ), 
+      ),
       body: PageView(
         controller: controller,
-        children: [   
-          Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 16, bottom: 40),
-                child: TransactionsCard(
-                  transactions: transactionTest, 
-                  total: total,
-                  transactionType: "entradas",
-                ),
+        children: [
+          Stack(children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 16, bottom: 40),
+              child: TransactionsCard(
+                transactions: transactionTest,
+                total: total,
+                transactionType: "entradas",
               ),
-              Align(
+            ),
+            Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 16),
                   child: CustomButton.add(onTap: toCreatePage),
-                )
-              )
-            ] 
-          ),
-          Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 16, bottom: 40),
-                child: TransactionsCard(
-                  transactions: transactionTest, 
-                  total: total,
-                  transactionType: "sáidas",
-                ),
+                ))
+          ]),
+          Stack(children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 16, bottom: 40),
+              child: TransactionsCard(
+                transactions: transactionTest,
+                total: total,
+                transactionType: "sáidas",
               ),
-              Align(
+            ),
+            Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 16),
                   child: CustomButton.add(onTap: toCreatePage),
-                )
-              )
-            ] 
-          ),
+                ))
+          ]),
           Padding(
             padding: const EdgeInsets.only(top: 16, bottom: 40),
             child: TransactionsCard(
-              transactions: transactionTest, 
+              transactions: transactionTest,
               total: total,
             ),
           ),

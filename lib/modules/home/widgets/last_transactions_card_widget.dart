@@ -1,5 +1,5 @@
 import 'package:budget_raro/shared/models/transaction_model.dart';
-import 'package:budget_raro/shared/widgets/transactions_card/transactions_listbuilder.dart';
+import 'package:budget_raro/shared/widgets/transactions_listbuilder.dart';
 import 'package:flutter/material.dart';
 import 'package:budget_raro/shared/themes/app_colors.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
@@ -56,15 +56,12 @@ class LastTransactionsCard extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  Text(
-                    "No momento",
-                    style: TextStyle(
-                      fontFamily: "Roboto",
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                      color: Color(0xffC4C4C4)
-                    )
-                  ),
+                  Text("No momento",
+                      style: TextStyle(
+                          fontFamily: "Roboto",
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: Color(0xffC4C4C4))),
                 ],
               ),
             ),
