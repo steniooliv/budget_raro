@@ -91,7 +91,7 @@ class _CreatePageState extends State<CreatePage> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: CustomButton.inserirEntrada(onTap: () {}),
+      floatingActionButton: CustomButton.inserirTransacao(onTap: () {}),
     );
   }
 }

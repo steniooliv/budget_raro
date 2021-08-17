@@ -80,7 +80,12 @@ class TextStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.black.withOpacity(0.38),
   );
-  static final ag = GoogleFonts.roboto(
+  static final body2ho = GoogleFonts.roboto(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: AppColors.black.withOpacity(0.87),
+  );
+  static final body3 = GoogleFonts.roboto(
     fontSize: 16,
     fontWeight: FontWeight.w400,
     color: AppColors.purple,

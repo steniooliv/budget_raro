@@ -30,13 +30,11 @@ class TransactionListBuilder extends StatelessWidget {
               format.data(transactions[i].date),
               style: TextStyles.body2,
             ),
-            leading: Image(
+            leading: Image.asset(
+              "assets/images/icons/${transactions[i].tag
+                .replaceAll('çã', 'ca')}.png",
               width: 40,
               height: 40,
-              image: AssetImage(
-                "image/icons/${transactions[i].tag
-                .replaceAll('çã', 'ca')}.png"
-              ),
             ),
             trailing: Text(
               format.real(transactions[i].value),
