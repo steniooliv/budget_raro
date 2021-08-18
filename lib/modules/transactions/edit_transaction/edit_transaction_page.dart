@@ -1,27 +1,34 @@
-import 'package:budget_raro/shared/widgets/custom_app_bar_expanded_widget.dart';
-import 'package:budget_raro/shared/widgets/dropdown_transactions_button.dart';
-import 'package:flutter/material.dart';
-
-import 'package:budget_raro/shared/models/transaction_model.dart';
+import 'package:budget_raro/modules/transactions/edit_transaction/edit_transaction_controller.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
-import 'package:budget_raro/shared/widgets/base-card-widget.dart';
+import 'package:budget_raro/shared/widgets/base_card_widget.dart';
 import 'package:budget_raro/shared/widgets/button_widget.dart';
-import 'package:budget_raro/shared/widgets/custom-text-form-field.dart';
+import 'package:budget_raro/shared/widgets/custom_app_bar_expanded_widget.dart';
+import 'package:budget_raro/shared/widgets/custom_textformfield_widget.dart';
 import 'package:budget_raro/shared/widgets/drawer_widget.dart';
+import 'package:budget_raro/shared/widgets/dropdown_transactions_button_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
-class CreatePage extends StatefulWidget {
+class EditTransactionPage extends StatefulWidget {
   final String type;
+  final double value;
+  final String title;
+  final DateTime date;
 
-  CreatePage({
+  EditTransactionPage({
     Key? key,
     required this.type,
+    required this.value,
+    required this.title,
+    required this.date,
   }) : super(key: key);
 
   @override
-  _CreatePageState createState() => _CreatePageState();
+  _EditTransactionPageState createState() => _EditTransactionPageState();
 }
 
-class _CreatePageState extends State<CreatePage> {
+class _EditTransactionPageState
+    extends ModularState<EditTransactionPage, EditTransactionController> {
   DateTime _date = DateTime.now();
 
   GlobalKey<ScaffoldState> _key = GlobalKey();
@@ -43,13 +50,13 @@ class _CreatePageState extends State<CreatePage> {
               padding: const EdgeInsets.all(32.0),
               child: Column(
                 children: [
-                  CustomTextFormField(
+                  CustomTextFormFieldWidget(
                     label: "Valor em R\$",
                   ),
                   SizedBox(
                     height: 24,
                   ),
-                  CustomTextFormField(
+                  CustomTextFormFieldWidget(
                     label: "Descrição",
                   ),
                   SizedBox(
@@ -58,8 +65,8 @@ class _CreatePageState extends State<CreatePage> {
                   Container(
                       width: double.maxFinite,
                       child: widget.type == 'Entrada'
-                          ? DropdownTransactionsButton.entry()
-                          : DropdownTransactionsButton.out()),
+                          ? DropdownTransactionsButtonWidget.entry()
+                          : DropdownTransactionsButtonWidget.out()),
                   SizedBox(
                     height: 24,
                   ),

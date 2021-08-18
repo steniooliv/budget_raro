@@ -1,8 +1,8 @@
 import 'package:budget_raro/shared/models/transaction_model.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
 import 'package:budget_raro/shared/utils/formatter.dart';
-import 'package:budget_raro/shared/widgets/base-card-widget.dart';
-import 'package:budget_raro/shared/widgets/transactions_listbuilder.dart';
+import 'package:budget_raro/shared/widgets/base_card_widget.dart';
+import 'package:budget_raro/shared/widgets/transactions_listbuilder_widget.dart';
 import 'package:flutter/material.dart';
 
 class TransactionsCard extends StatelessWidget {
@@ -24,7 +24,7 @@ class TransactionsCard extends StatelessWidget {
           margin: EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
-              TransactionListBuilder(transactions: transactions),
+              TransactionListBuilderWidget(transactions: transactions),
               Divider(),
               Container(
                 padding: EdgeInsets.only(

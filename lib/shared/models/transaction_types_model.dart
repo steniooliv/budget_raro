@@ -1,7 +1,8 @@
-class TransactionTypes {
+class TransactionTypesModel {
   final String icon;
   final String tag;
-  TransactionTypes({
+
+  TransactionTypesModel({
     required this.icon,
     required this.tag,
   });

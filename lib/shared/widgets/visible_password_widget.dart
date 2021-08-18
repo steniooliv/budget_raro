@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
 class VisibleWidget extends StatelessWidget {
-  
   final bool visible;
   final Function()? onPressed;
   final Color? color;
 
   const VisibleWidget({
-    Key ? key,
+    Key? key,
     this.color,
     required this.visible,
     required this.onPressed,

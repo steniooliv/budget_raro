@@ -1,19 +1,6 @@
 import 'package:budget_raro/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
-/* Informar parâmetros icon, coloricon, background (opcional,
-se não informado será o gradiente padrão)
-
-exemplo:
-
-TransactionIcon(
-  icon: IconsCustom.pix,
-  coloricon: AppColors.white,
-  background: AppColors.red,
-),
-
-*/
-
 class TransactionIcon extends StatelessWidget {
   final IconData icon;
   final Color coloricon;

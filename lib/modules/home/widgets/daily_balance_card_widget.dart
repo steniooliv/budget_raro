@@ -1,12 +1,10 @@
+import 'package:budget_raro/modules/home/widgets/balance_bar_widget.dart';
+import 'package:budget_raro/modules/home/widgets/dropdown_select_month_widget.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
-import 'package:budget_raro/shared/widgets/base-card-widget.dart';
+import 'package:budget_raro/shared/widgets/base_card_widget.dart';
 import 'package:flutter/material.dart';
-import 'balance-bar-widget.dart';
-import 'dropdown-select-month.dart';
-
 
 class DailyBalanceCard extends StatefulWidget {
-
   const DailyBalanceCard({
     Key? key,
   }) : super(key: key);
@@ -16,7 +14,6 @@ class DailyBalanceCard extends StatefulWidget {
 }
 
 class _DailyBalanceCardState extends State<DailyBalanceCard> {
-  
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -33,14 +30,16 @@ class _DailyBalanceCardState extends State<DailyBalanceCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("Dia a dia", style: TextStyles.h6),
-                  DropDownSelectMonth(),
+                  DropDownSelectMonthWidget(),
                 ],
               ),
               Text(
                 "R\$ 3.000,00", // RECEBE O VARIÁVEL COM SALDO DO MÊS SELECIONADO
                 style: TextStyles.h5Black,
               ),
-              BalanceBarWidget(entryValue: 8000, outValue: 5000), // RECEBE DADOS DE ENTRADA E SAÍDA
+              BalanceBarWidget(
+                  entryValue: 8000,
+                  outValue: 5000), // RECEBE DADOS DE ENTRADA E SAÍDA
             ],
           ),
         ),

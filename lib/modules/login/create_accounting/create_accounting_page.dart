@@ -1,36 +1,41 @@
+import 'package:budget_raro/modules/login/create_accounting/create_accouting_controller.dart';
 import 'package:budget_raro/modules/login/create_accounting/widgets/back_button_widget.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
-import 'package:budget_raro/shared/widgets/custom-text-form-field.dart';
 import 'package:budget_raro/shared/widgets/button_widget.dart';
+import 'package:budget_raro/shared/widgets/custom_textformfield_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
-class RegisterPage extends StatefulWidget {
-  RegisterPage({Key? key}) : super(key: key);
+class CreateAccountingPage extends StatefulWidget {
+  CreateAccountingPage({Key? key}) : super(key: key);
 
   @override
-  _RegisterPageState createState() => _RegisterPageState();
+  _CreateAccountingPageState createState() => _CreateAccountingPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
-  final PageController controller = PageController(initialPage: 0);
+class _CreateAccountingPageState
+    extends ModularState<CreateAccountingPage, CreateAccountingController> {
+  final PageController _controller = PageController(initialPage: 0);
   int aux = 1;
   bool isChecked = false;
   void nextPage() {
-    if (controller.hasClients && controller.page != 3 && controller.page != 2) {
-      controller.nextPage(
+    if (_controller.hasClients &&
+        _controller.page != 3 &&
+        _controller.page != 2) {
+      _controller.nextPage(
         duration: const Duration(milliseconds: 250),
         curve: Curves.easeInOut,
       );
       aux++;
     }
-    if (controller.hasClients && controller.page == 2 && isChecked == true) {
-      controller.nextPage(
+    if (_controller.hasClients && _controller.page == 2 && isChecked == true) {
+      _controller.nextPage(
         duration: const Duration(milliseconds: 250),
         curve: Curves.easeInOut,
       );
       aux++;
     }
-    if (controller.page == 3) {
+    if (_controller.page == 3) {
       Navigator.pushNamed(context, '/onboarding');
       aux = 1;
     }
@@ -38,14 +43,14 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void prevPage() {
-    if (controller.hasClients && controller.page != 0) {
-      controller.previousPage(
+    if (_controller.hasClients && _controller.page != 0) {
+      _controller.previousPage(
         duration: const Duration(milliseconds: 250),
         curve: Curves.easeInOut,
       );
       aux--;
     }
-    if (controller.page == 0) {
+    if (_controller.page == 0) {
       Navigator.pop(context);
       aux = 1;
     }
@@ -71,7 +76,7 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
-        controller: controller,
+        controller: _controller,
         children: <Widget>[
           Padding(
             padding:
@@ -105,13 +110,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     padding: const EdgeInsets.only(
                       top: 110,
                     ),
-                    child: CustomTextFormField(label: "Nome"),
+                    child: CustomTextFormFieldWidget(label: "Nome"),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
                       top: 50,
                     ),
-                    child: CustomTextFormField(label: "E-mail"),
+                    child: CustomTextFormFieldWidget(label: "E-mail"),
                   ),
                 ],
               ),
@@ -147,13 +152,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     padding: const EdgeInsets.only(
                       top: 145,
                     ),
-                    child: CustomTextFormField(label: "Telefone"),
+                    child: CustomTextFormFieldWidget(label: "Telefone"),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
                       top: 50,
                     ),
-                    child: CustomTextFormField(label: "CPF"),
+                    child: CustomTextFormFieldWidget(label: "CPF"),
                   ),
                 ],
               ),
@@ -262,13 +267,14 @@ class _RegisterPageState extends State<RegisterPage> {
                     padding: const EdgeInsets.only(
                       top: 50,
                     ),
-                    child: CustomTextFormField(label: "Crie uma senha"),
+                    child: CustomTextFormFieldWidget(label: "Crie uma senha"),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
                       top: 50,
                     ),
-                    child: CustomTextFormField(label: "Confirme sua senha"),
+                    child:
+                        CustomTextFormFieldWidget(label: "Confirme sua senha"),
                   ),
                 ],
               ),
