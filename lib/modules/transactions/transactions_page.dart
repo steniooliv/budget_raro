@@ -1,8 +1,10 @@
+import 'package:budget_raro/modules/transactions/transactions_controller.dart';
 import 'package:budget_raro/shared/models/transaction_model.dart';
 import 'package:budget_raro/shared/widgets/button_widget.dart';
 import 'package:budget_raro/shared/widgets/custom_app_bar_balance_widget.dart';
 import 'package:budget_raro/shared/widgets/transactions_card_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class TransactionsPage extends StatefulWidget {
   TransactionsPage({Key? key}) : super(key: key);
@@ -11,8 +13,9 @@ class TransactionsPage extends StatefulWidget {
   _TransactionsPageState createState() => _TransactionsPageState();
 }
 
-class _TransactionsPageState extends State<TransactionsPage> {
-  final PageController controller = PageController(initialPage: 0);
+class _TransactionsPageState
+    extends ModularState<TransactionsPage, TransactionsController> {
+  final PageController _controller = PageController(initialPage: 0);
   final List<TransactionModel> transactionTest = [];
   String valor = "0,00";
   double total = 0;
@@ -27,12 +30,12 @@ class _TransactionsPageState extends State<TransactionsPage> {
     return Scaffold(
       appBar: CustomAppBarBalanceWidget(
         dropdownDefault: "AGOSTO",
-        pageController: controller,
+        pageController: _controller,
         balance: valor,
         drawerKey: _key,
       ),
       body: PageView(
-        controller: controller,
+        controller: _controller,
         children: [
           Stack(children: [
             Padding(

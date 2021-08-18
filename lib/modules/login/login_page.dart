@@ -1,11 +1,13 @@
+import 'package:budget_raro/modules/login/login_controller.dart';
 import 'package:budget_raro/modules/login/widget/create_account_button_widget.dart';
 import 'package:budget_raro/modules/login/widget/recover_button_widget.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
-import 'package:budget_raro/shared/widgets/custom-text-form-field.dart';
-import 'package:budget_raro/shared/widgets/visible-password-widget.dart';
-import 'package:budget_raro/shared/widgets/login_button_widget.dart';
 import 'package:budget_raro/shared/widgets/button_widget.dart';
+import 'package:budget_raro/shared/widgets/custom_textformfield_widget.dart';
+import 'package:budget_raro/shared/widgets/login_button_widget.dart';
+import 'package:budget_raro/shared/widgets/visible_password_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -14,12 +16,12 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final PageController controller = PageController(initialPage: 0);
+class _LoginPageState extends ModularState<LoginPage, LoginController> {
+  final PageController _controller = PageController(initialPage: 0);
 
   void nextPage() {
-    if (controller.hasClients) {
-      controller.nextPage(
+    if (_controller.hasClients) {
+      _controller.nextPage(
         duration: const Duration(milliseconds: 250),
         curve: Curves.easeInOut,
       );
@@ -27,8 +29,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void prevPage() {
-    if (controller.hasClients) {
-      controller.previousPage(
+    if (_controller.hasClients) {
+      _controller.previousPage(
         duration: const Duration(milliseconds: 250),
         curve: Curves.easeInOut,
       );
@@ -54,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
-        controller: controller,
+        controller: _controller,
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(left: 48, right: 48),
@@ -93,7 +95,8 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.only(
                       top: 64,
                     ),
-                    child: CustomTextFormField(label: "Insira seu e-mail"),
+                    child:
+                        CustomTextFormFieldWidget(label: "Insira seu e-mail"),
                   ),
                   Align(
                     alignment: Alignment.centerRight,
@@ -155,14 +158,15 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.only(
                       top: 80,
                     ),
-                    child: CustomTextFormField(label: "Insira seu e-mail"),
+                    child:
+                        CustomTextFormFieldWidget(label: "Insira seu e-mail"),
                   ),
                   Stack(children: [
                     Padding(
                       padding: const EdgeInsets.only(
                         top: 30,
                       ),
-                      child: CustomTextFormField(label: "Senha"),
+                      child: CustomTextFormFieldWidget(label: "Senha"),
                     ),
                     Align(
                         alignment: Alignment.centerRight,

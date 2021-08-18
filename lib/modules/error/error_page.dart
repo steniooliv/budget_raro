@@ -1,22 +1,23 @@
+import 'package:budget_raro/modules/error/error_controller.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
 import 'package:budget_raro/shared/widgets/button_widget.dart';
 import 'package:budget_raro/shared/widgets/custom_app_bar_widget.dart';
 import 'package:budget_raro/shared/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class ErrorPage extends StatefulWidget {
   final String user;
-  ErrorPage({
-    Key? key,
-    required this.user,
-  }) : super(key: key);
+
+  ErrorPage({Key? key, required this.user}) : super(key: key);
 
   @override
   _ErrorPageState createState() => _ErrorPageState();
 }
 
-class _ErrorPageState extends State<ErrorPage> {
+class _ErrorPageState extends ModularState<ErrorPage, ErrorController> {
   GlobalKey<ScaffoldState> _key = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +39,9 @@ class _ErrorPageState extends State<ErrorPage> {
             ),
             SizedBox(height: 26),
             CustomButton.tentar(
-              onTap: () {}, //INSERIR NAVEGAÇÃO.
+              onTap: () {
+                Modular.to.pop();
+              }, //INSERIR NAVEGAÇÃO.
             )
           ],
         ),

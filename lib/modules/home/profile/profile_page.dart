@@ -1,7 +1,7 @@
-import 'package:budget_raro/shared/widgets/base-card-widget.dart';
+import 'package:budget_raro/shared/widgets/base_card_widget.dart';
 import 'package:budget_raro/shared/widgets/button_widget.dart';
-import 'package:budget_raro/shared/widgets/custom-text-form-field.dart';
 import 'package:budget_raro/shared/widgets/custom_app_bar_expanded_widget.dart';
+import 'package:budget_raro/shared/widgets/custom_textformfield_widget.dart';
 import 'package:budget_raro/shared/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -32,25 +32,25 @@ class _ProfilePageState extends State<ProfilePage> {
               padding: const EdgeInsets.all(32.0),
               child: Column(
                 children: [
-                  CustomTextFormField(
+                  CustomTextFormFieldWidget(
                     label: "Nome",
                   ),
                   SizedBox(
                     height: 24,
                   ),
-                  CustomTextFormField(
+                  CustomTextFormFieldWidget(
                     label: "CPF",
                   ),
                   SizedBox(
                     height: 24,
                   ),
-                  CustomTextFormField(
+                  CustomTextFormFieldWidget(
                     label: "E-mail",
                   ),
                   SizedBox(
                     height: 24,
                   ),
-                  CustomTextFormField(
+                  CustomTextFormFieldWidget(
                     label: "Celular",
                   ),
                   SizedBox(

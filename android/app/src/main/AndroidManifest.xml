@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.budget_raro">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="budget_raro"
+        android:label="Budget"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
