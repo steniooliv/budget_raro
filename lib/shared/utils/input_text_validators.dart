@@ -6,7 +6,7 @@ class Validator {
   
   final name = MultiValidator([
     isEmpty,
-    MinLengthValidator( 
+    MinLengthValidator(
       3,
       errorText: "deve ter no mínimo 3 caracteres"
     )
@@ -20,6 +20,9 @@ class Validator {
   final phone = MultiValidator([
     isEmpty,
     MinLengthValidator(13, errorText: "número inválido"),
+    PatternValidator(r"^[1-9]{2}\s[9][\d]{4}\-[\d]{4}$",
+      errorText: "digite um número de celular válido"
+    ),
   ]);
   
   final cpf = Validatorless.multiple([
@@ -30,9 +33,16 @@ class Validator {
   final password = MultiValidator([
     isEmpty,
     MinLengthValidator( 
-      6,
-      errorText: "deve ter entre 6 e 8 caracteres"
-    )
+      8, errorText: "pelo menos 8 caracteres"
+    ),
+    PatternValidator(r"[A-Z]",
+      errorText: "pelo menos uma letra maiúscula"),
+    PatternValidator(r"[a-z]",
+      errorText: "pelo menos uma letra minúscula"),
+    PatternValidator(r"\d",
+      errorText: "deve ter um número"),
+    PatternValidator(r"[}{,.^?~=+\-_\/*\-+.\|@#&<>%\$!]",
+      errorText: "deve ter um símbolo"),
   ]);
   
   final value = MultiValidator([

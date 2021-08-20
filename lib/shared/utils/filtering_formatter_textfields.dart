@@ -31,7 +31,7 @@ class FilteringFormatter {
   ];
   List<TextInputFormatter> password = [
   FilteringTextInputFormatter.deny(RegExp(r"\s")),
-  LengthLimitingTextInputFormatter(8),
+  LengthLimitingTextInputFormatter(12),
   ];
   List<TextInputFormatter> value = [
     FilteringTextInputFormatter.allow(
