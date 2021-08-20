@@ -18,6 +18,7 @@ class CustomTextFormFieldWidget extends StatelessWidget {
   final String? errorText;
   final TextCapitalization? textCapitalization;
   final FocusNode? focusNode;
+  final AutovalidateMode? autovalidateMode;
   
   const CustomTextFormFieldWidget({
     Key? key,
@@ -35,6 +36,7 @@ class CustomTextFormFieldWidget extends StatelessWidget {
     this.errorText,
     this.textCapitalization,
     this.focusNode,
+    this.autovalidateMode,
   }) : super(key: key);
 
   @override
@@ -62,6 +64,12 @@ class CustomTextFormFieldWidget extends StatelessWidget {
             borderSide: BorderSide(color: AppColors.purple, width: 2),
           ),
           helperText: helperText,
+          helperStyle: TextStyle(
+            fontFamily: "Roboto",
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            color: Colors.black.withOpacity(.54),
+          ),
           errorText: errorText,
         ));
   }
