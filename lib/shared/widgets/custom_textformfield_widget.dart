@@ -19,6 +19,8 @@ class CustomTextFormFieldWidget extends StatelessWidget {
   final TextCapitalization? textCapitalization;
   final FocusNode? focusNode;
   final AutovalidateMode? autovalidateMode;
+  final bool? enabled;
+  final String? initialValue;
   
   const CustomTextFormFieldWidget({
     Key? key,
@@ -37,6 +39,8 @@ class CustomTextFormFieldWidget extends StatelessWidget {
     this.textCapitalization,
     this.focusNode,
     this.autovalidateMode,
+    this.enabled,
+    this.initialValue,
   }) : super(key: key);
 
   @override
@@ -51,6 +55,8 @@ class CustomTextFormFieldWidget extends StatelessWidget {
         inputFormatters: inputFormatters,
         validator: validator,
         focusNode: focusNode,
+        enabled: enabled,
+        initialValue: initialValue,
         decoration: InputDecoration(
           suffixIcon: suffixIcon,
           labelText: label,
