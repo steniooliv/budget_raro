@@ -18,7 +18,13 @@ abstract class _SplashControllerBase with Store {
   Future<void> hasUser() async {
     await Future.delayed(Duration(seconds: 3));
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.containsKey('user_uid')) {
+    //
+    // get user.uid
+    //
+    // UserModel userLocal = UserModel.fromJson(prefs.get('user').toString());
+    // print("${userLocal.uid}");
+
+    if (prefs.containsKey('user')) {
       Modular.to.navigate('/home');
     } else {
       Modular.to.navigate('/login');
