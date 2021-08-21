@@ -1,4 +1,4 @@
-package com.example.budget_raro
+package com.rarolabs.budgetapp
 
 import io.flutter.embedding.android.FlutterActivity
 

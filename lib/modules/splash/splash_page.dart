@@ -1,5 +1,7 @@
 import 'package:animated_card/animated_card.dart';
+import 'package:budget_raro/modules/app_widget_module.dart';
 import 'package:budget_raro/modules/splash/splash_controller.dart';
+import 'package:budget_raro/shared/auth/firebase_repository.dart';
 import 'package:budget_raro/shared/themes/app_colors.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +18,9 @@ class _SplashPageState extends ModularState<SplashPage, SplashController> {
   @override
   void initState() {
     controller.hasUser();
+    controller.firebaseRepository
+        .firebaseInitialize()
+        .then((value) => WidgetsFlutterBinding.ensureInitialized());
     super.initState();
   }
 
