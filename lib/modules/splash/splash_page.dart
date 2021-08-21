@@ -18,9 +18,10 @@ class _SplashPageState extends ModularState<SplashPage, SplashController> {
   @override
   void initState() {
     controller.hasUser();
-    controller.firebaseRepository
-        .firebaseInitialize()
-        .then((value) => WidgetsFlutterBinding.ensureInitialized());
+    controller.firebaseInitialize().then((value) =>
+        WidgetsFlutterBinding.ensureInitialized()
+            .addPostFrameCallback((timeStamp) {}));
+
     super.initState();
   }
 

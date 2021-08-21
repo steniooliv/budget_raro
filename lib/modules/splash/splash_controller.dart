@@ -8,15 +8,20 @@ part 'splash_controller.g.dart';
 class SplashController = _SplashControllerBase with _$SplashController;
 
 abstract class _SplashControllerBase with Store {
-  late final FirebaseRepository firebaseRepository = FirebaseRepository();
+  @action
+  Future<void> firebaseInitialize() async {
+    Modular.get<FirebaseRepository>();
+    await FirebaseRepository().firebaseInitialize();
+  }
 
+  @action
   Future<void> hasUser() async {
     await Future.delayed(Duration(seconds: 3));
     SharedPreferences prefs = await SharedPreferences.getInstance();
     if (prefs.containsKey('user_uid')) {
-      Modular.to.pushReplacementNamed('/home');
+      Modular.to.navigate('/home');
     } else {
-      Modular.to.pushReplacementNamed('/login');
+      Modular.to.navigate('/login');
     }
   }
 }
