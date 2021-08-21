@@ -7,7 +7,7 @@ class CustomTextFormFieldWidget extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final String label;
-  final Function(String? value)? validator;
+  final String? Function(String? value)? validator;
   final ValueChanged<String>? onChanged;
   final bool obscureText;
   final FormFieldSetter<String>? onSaved;
@@ -15,8 +15,11 @@ class CustomTextFormFieldWidget extends StatelessWidget {
   final TextInputAction? textInputAction;
   final List<TextInputFormatter>? inputFormatters;
   final String? helperText;
-  final String? errorMessage;
-
+  final String? errorText;
+  final TextCapitalization? textCapitalization;
+  final FocusNode? focusNode;
+  final AutovalidateMode? autovalidateMode;
+  
   const CustomTextFormFieldWidget({
     Key? key,
     required this.label,
@@ -30,7 +33,10 @@ class CustomTextFormFieldWidget extends StatelessWidget {
     this.onChanged,
     this.inputFormatters,
     this.helperText,
-    this.errorMessage,
+    this.errorText,
+    this.textCapitalization,
+    this.focusNode,
+    this.autovalidateMode,
   }) : super(key: key);
 
   @override
@@ -43,6 +49,8 @@ class CustomTextFormFieldWidget extends StatelessWidget {
         onChanged: onChanged,
         obscureText: obscureText,
         inputFormatters: inputFormatters,
+        validator: validator,
+        focusNode: focusNode,
         decoration: InputDecoration(
           suffixIcon: suffixIcon,
           labelText: label,
@@ -56,7 +64,13 @@ class CustomTextFormFieldWidget extends StatelessWidget {
             borderSide: BorderSide(color: AppColors.purple, width: 2),
           ),
           helperText: helperText,
-          errorText: errorMessage,
+          helperStyle: TextStyle(
+            fontFamily: "Roboto",
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            color: Colors.black.withOpacity(.54),
+          ),
+          errorText: errorText,
         ));
   }
 }
