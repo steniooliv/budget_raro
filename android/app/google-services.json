@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "374831096585",
+    "project_id": "budget-raro",
+    "storage_bucket": "budget-raro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374831096585:android:76503e49a85a460bef69d8",
+        "android_client_info": {
+          "package_name": "com.rarolabs.budgetapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374831096585-glmvd4k22mjpe91b0jof429l65bl47nn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1h8Hx0jQP1Ny9b9l4LkHeqdopX5gT34E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "374831096585-glmvd4k22mjpe91b0jof429l65bl47nn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
