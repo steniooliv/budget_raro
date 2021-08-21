@@ -40,11 +40,11 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
   void ontapAux() {}
 
   void toRegisterPage() {
-    Navigator.pushNamed(context, '/register');
+    Modular.to.pushNamed('/login/create_accounting');
   }
 
   void toHomePage() {
-    Navigator.pushNamed(context, '/home');
+    Modular.to.navigate('/home');
   }
 
   void toRecoverPage() {
