@@ -20,12 +20,19 @@ class BalanceBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
 
     double maxWidht = MediaQuery.of(context).size.width - 64;
-    double totalBalance = entryValue + outValue.abs();
-    double entryBarWidth = (maxWidht/(totalBalance+1))*entryValue;
-    double outBarWidth = (maxWidht/(totalBalance+1))*outValue;
     String entryValueString = Formatter().real(entryValue);
     String outValueString = Formatter().real(outValue);
-
+    double entryBarWidth;
+    double outBarWidth;
+    
+    if (entryValue + outValue > 0) {
+      entryBarWidth = entryValue>outValue ? maxWidht : (entryValue/outValue)*maxWidht;
+      outBarWidth = entryValue<outValue ? maxWidht : (outValue/entryValue)*maxWidht;
+    } else {
+      entryBarWidth = 0;
+      outBarWidth = 0;
+    }
+    
     return  Column(
       children: [
         GestureDetector(
