@@ -6,13 +6,13 @@ import 'package:flutter_modular/flutter_modular.dart';
 class LoginModule extends Module {
   @override
   List<Bind<Object>> get binds => [
-        Bind.factory((i) => LoginController()),
+        Bind.lazySingleton((i) => LoginController()),
       ];
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/', child: (_, __) => LoginPage()),
+        ChildRoute('/', child: (_, args) => LoginPage()),
         ChildRoute('/create_accounting',
-            child: (_, __) => CreateAccountingPage()),
+            child: (_, args) => CreateAccountingPage()),
       ];
 }
