@@ -6,10 +6,12 @@ import 'package:budget_raro/modules/transactions/transactions_module.dart';
 import 'package:budget_raro/shared/auth/firebase_authenticate.dart';
 import 'package:budget_raro/shared/auth/firebase_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppWidgetModule extends Module {
   @override
   List<Bind> get binds => [
+        AsyncBind((i) => SharedPreferences.getInstance()),
         Bind.singleton((i) => FirebaseRepository()),
         Bind.singleton((i) => FirebaseAuthenticate(
             firebaseRepository: i.get<FirebaseRepository>())),
