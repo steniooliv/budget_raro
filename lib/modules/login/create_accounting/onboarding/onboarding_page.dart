@@ -1,6 +1,7 @@
 import 'package:budget_raro/shared/themes/app_colors.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class OnboardingPage extends StatefulWidget {
   OnboardingPage({Key? key}) : super(key: key);
@@ -69,7 +70,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, '/login');
+                      Modular.to.navigate('/login');
                     },
                     child: Text(
                       "Vamos lá!",
