@@ -1,8 +1,18 @@
-import 'package:budget_raro/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
+import 'package:budget_raro/shared/themes/app_colors.dart';
+
 class DropDownSelectMonthWidget extends StatefulWidget {
-  const DropDownSelectMonthWidget({Key? key}) : super(key: key);
+  final Function(String?)? onChange;
+  final String? value;
+  final List<DropdownMenuItem<String>>? items;
+
+  const DropDownSelectMonthWidget({
+    Key? key,
+    required this.onChange,
+    this.value,
+    this.items,
+  }) : super(key: key);
 
   @override
   State<DropDownSelectMonthWidget> createState() =>
@@ -10,23 +20,6 @@ class DropDownSelectMonthWidget extends StatefulWidget {
 }
 
 class _DropDownSelectMonthWidgetState extends State<DropDownSelectMonthWidget> {
-  final Map<int, String> months = {
-    1: "JAN",
-    2: "FEV",
-    3: "MAR",
-    4: "ABR",
-    5: "MAI",
-    6: "JUN",
-    7: "JUL",
-    8: "AGO",
-    9: "SET",
-    10: "OUT",
-    11: "NOV",
-    12: "DEZ",
-  };
-  late String? dropdownValue =
-      months[DateTime.now().month]; //months[widget.currentMonth];
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -54,7 +47,7 @@ class _DropDownSelectMonthWidgetState extends State<DropDownSelectMonthWidget> {
           ]),
       child: Center(
         child: DropdownButton<String>(
-          value: dropdownValue,
+          value: widget.value,
           icon: const Icon(
             Icons.keyboard_arrow_down,
             color: Colors.white,
@@ -71,17 +64,8 @@ class _DropDownSelectMonthWidgetState extends State<DropDownSelectMonthWidget> {
           dropdownColor: AppColors.purple,
           menuMaxHeight: 200,
           elevation: 0,
-          onChanged: (String? newValue) {
-            setState(() {
-              dropdownValue = newValue!;
-            });
-          },
-          items: months.values.map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
+          onChanged: widget.onChange,
+          items: widget.items,
         ),
       ),
     );

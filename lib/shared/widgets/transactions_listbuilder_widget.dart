@@ -21,15 +21,15 @@ class TransactionListBuilderWidget extends StatelessWidget {
           itemBuilder: (context, i) {
             return ListTile(
               title: Text(
-                "${transactions[i].tag} ${transactions[i].description}",
+                "${transactions[i].category} ${transactions[i].description}",
                 style: TextStyles.inputTextMedium,
               ),
               subtitle: Text(
-                format.data(transactions[i].date),
+                format.data(transactions[i].createdAt),
                 style: TextStyles.body2,
               ),
               leading: Image.asset(
-                "assets/images/icons/${transactions[i].tag.replaceAll('çã', 'ca')}.png",
+                "assets/images/icons/${transactions[i].category.replaceAll('çã', 'ca')}.png",
                 width: 40,
                 height: 40,
               ),

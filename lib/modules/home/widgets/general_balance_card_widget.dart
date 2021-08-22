@@ -1,12 +1,16 @@
+import 'package:flutter/material.dart';
+
 import 'package:budget_raro/shared/themes/app_colors.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
 import 'package:budget_raro/shared/widgets/base_card_widget.dart';
 import 'package:budget_raro/shared/widgets/visible_password_widget.dart';
-import 'package:flutter/material.dart';
 
 class GeneralBalanceCard extends StatefulWidget {
+  final String balanceValue;
+
   const GeneralBalanceCard({
     Key? key,
+    required this.balanceValue,
   }) : super(key: key);
 
   @override
@@ -43,8 +47,8 @@ class _GeneralBalanceCardState extends State<GeneralBalanceCard> {
             ),
             Text(
                 balanceVisibility
-                    ? "R\$ 3.000,00"
-                    : "", // RECEBE O VARIÁVEL COM SALDO GERAL
+                    ? "R\$ ${widget.balanceValue}"
+                    : "••••••••••••", // RECEBE O VARIÁVEL COM SALDO GERAL
                 maxLines: 1,
                 overflow: TextOverflow.clip,
                 style: TextStyles.h5Black)

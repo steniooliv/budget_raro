@@ -49,6 +49,16 @@ class CustomButton extends StatelessWidget {
     required this.onTap,
   }) : super(key: key);
 
+  const CustomButton.refresh({
+    Key? key,
+    this.buttonHeight = 48,
+    this.buttonWidth = 48,
+    this.buttonContent = "",
+    this.icon = Icons.refresh,
+    this.aux = 1,
+    required this.onTap,
+  }) : super(key: key);
+
   const CustomButton.continuarArrow({
     Key? key,
     this.buttonHeight = 32,
