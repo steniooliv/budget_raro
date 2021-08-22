@@ -1,7 +1,7 @@
 import 'package:budget_raro/modules/home/home_controller.dart';
 import 'package:budget_raro/modules/home/home_page.dart';
 import 'package:budget_raro/modules/home/home_repository.dart';
-import 'package:budget_raro/modules/home/profile/profile_page.dart';
+import 'package:budget_raro/modules/home/profile/profile_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class HomeModule extends Module {
@@ -13,6 +13,6 @@ class HomeModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute('/', child: (_, __) => HomePage()),
-        ChildRoute('/profile', child: (_, __) => ProfilePage()),
+        ModuleRoute('/profile', module: ProfileModule()),
       ];
 }

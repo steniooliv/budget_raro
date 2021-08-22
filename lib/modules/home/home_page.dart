@@ -29,6 +29,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends ModularState<HomePage, HomeController> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
+  void initState() {
+    controller.getUser();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -38,7 +44,10 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       ),
       home: Scaffold(
         key: _key,
-        drawer: DrawerWidget(),
+        drawer: DrawerWidget(
+          onTap: () => Modular.to
+              .pushNamed('/home/profile', arguments: controller.userModel),
+        ),
         appBar: CustomAppBarWidget(
           drawerKey: _key,
           welcome: 'Olá, José',

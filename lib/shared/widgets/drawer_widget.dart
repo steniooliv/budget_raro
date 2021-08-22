@@ -1,11 +1,18 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
 import 'package:budget_raro/shared/themes/app_colors.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
-import 'package:flutter/material.dart';
 
 class DrawerWidget extends StatelessWidget {
   final String? user;
+  final Function()? onTap;
 
-  const DrawerWidget({Key? key, this.user = ""}) : super(key: key);
+  const DrawerWidget({
+    Key? key,
+    this.user,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +61,7 @@ class DrawerWidget extends StatelessWidget {
                           height: 15.0,
                         ),
                         GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/profile');
-                          },
+                          onTap: onTap,
                           child: Text(
                             'Cadastro',
                             style: TextStyles.drawerOption,
@@ -101,7 +106,7 @@ class DrawerWidget extends StatelessWidget {
                                 actions: [
                                   TextButton(
                                       onPressed: () {
-                                        Navigator.pop(context);
+                                        Modular.to.pop();
                                       },
                                       child: Text('OK'))
                                 ],
@@ -127,7 +132,7 @@ class DrawerWidget extends StatelessWidget {
                                 actions: [
                                   TextButton(
                                       onPressed: () {
-                                        Navigator.pop(context);
+                                        Modular.to.pop();
                                       },
                                       child: Text('OK'))
                                 ],
@@ -206,7 +211,7 @@ class DrawerWidget extends StatelessWidget {
                                 actions: [
                                   TextButton(
                                       onPressed: () {
-                                        Navigator.pop(context);
+                                        Modular.to.pop();
                                       },
                                       child: Text('OK'))
                                 ],
