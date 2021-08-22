@@ -44,7 +44,7 @@ mixin _$CreateAccountingController on _CreateAccountingControllerBase, Store {
       ActionController(name: '_CreateAccountingControllerBase');
 
   @override
-  void nextPage({dynamic pageController}) {
+  void nextPage({required PageController pageController}) {
     final _$actionInfo = _$_CreateAccountingControllerBaseActionController
         .startAction(name: '_CreateAccountingControllerBase.nextPage');
     try {
@@ -55,7 +55,7 @@ mixin _$CreateAccountingController on _CreateAccountingControllerBase, Store {
   }
 
   @override
-  void prevPage({dynamic pageController}) {
+  void prevPage({required PageController pageController}) {
     final _$actionInfo = _$_CreateAccountingControllerBaseActionController
         .startAction(name: '_CreateAccountingControllerBase.prevPage');
     try {
