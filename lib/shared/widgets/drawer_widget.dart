@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:budget_raro/shared/themes/app_colors.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DrawerWidget extends StatelessWidget {
   final String? user;
@@ -30,7 +31,7 @@ class DrawerWidget extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: Text(
-                        'Olá $user!',
+                        'Olá ${user ?? ''}',
                         style: TextStyles.balance,
                       ),
                     ),
@@ -225,6 +226,38 @@ class DrawerWidget extends StatelessWidget {
                         ),
                         SizedBox(
                           height: 15.0,
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                height: 1,
+                color: AppColors.grey,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0, left: 32.0),
+                child: Row(
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        GestureDetector(
+                          onTap: () async {
+                            final prefs = await SharedPreferences.getInstance();
+                            prefs.clear();
+                            Modular.to.navigate('/login');
+                          },
+                          child: Text(
+                            'Sair',
+                            style: TextStyles.drawerOption,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 60.0,
                         ),
                       ],
                     )
