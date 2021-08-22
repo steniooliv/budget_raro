@@ -10,6 +10,7 @@ import 'package:budget_raro/shared/widgets/visible_password_widget.dart';
 import 'package:budget_raro/shared/utils/input_text_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:budget_raro/shared/themes/app_colors.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -32,6 +33,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
   
   @override
   Widget build(BuildContext context) {
+  controller.isActive();
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(new FocusNode());
@@ -94,7 +96,38 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                         alignment: Alignment.centerRight,
                         child: Padding(
                           padding: const EdgeInsets.only(top: 16),
-                          child: CustomButton.continuar(onTap: controller.nextPage),
+                          child: 
+                          InkWell(
+                            onTap: controller.enable ? controller.nextPage : null,
+                            child: Container(
+                              height: 36,
+                              width: 114,
+                              decoration: BoxDecoration(
+                                  gradient: controller.enable ? AppColors.linear : AppColors.desable,
+                                  borderRadius: BorderRadius.circular(100.00),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color(0x1F000000).withOpacity(0.12),
+                                      offset: Offset(0.0, 1.0),
+                                      blurRadius: 5.0,
+                                    ),
+                                    BoxShadow(
+                                      color: Color(0x24000000).withOpacity(0.14),
+                                      offset: Offset(0.0, 2.0),
+                                      blurRadius: 2.0,
+                                    ),
+                                    BoxShadow(
+                                      color: Color(0x33000000).withOpacity(0.20),
+                                      offset: Offset(0.0, 3.0),
+                                      blurRadius: 1.0,
+                                    )
+                                  ]),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [Text("CONTINUAR",style: TextStyles.textButton,)]
+                              ),
+                            ),
+                          )
                         ),
                       ),
                       Align(

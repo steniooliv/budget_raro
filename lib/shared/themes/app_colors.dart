@@ -21,4 +21,9 @@ class AppColors {
     begin: Alignment(-2, -0.8),
     end: Alignment(0.7, 0),
   );
+  static final desable = LinearGradient(
+    colors: [AppColors.grey, AppColors.grey],
+    begin: Alignment(0, 0),
+    end: Alignment(0, 0),
+  );
 }
