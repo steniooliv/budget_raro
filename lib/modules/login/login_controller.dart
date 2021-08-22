@@ -14,8 +14,20 @@ abstract class _LoginControllerBase with Store {
   
   FirebaseRepository firebaseRepository = FirebaseRepository();
 
+  @observable
+  bool enable = false;
+
+  @observable
+  void isActive(){
+    if (email.text.isEmpty){
+      enable = false;
+    }
+    else{
+      enable = true;
+    }
+  }
   
-  
+
   @action
   Future<void> firebaseInitialize() async {
     Modular.get<FirebaseRepository>();
