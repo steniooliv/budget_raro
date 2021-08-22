@@ -28,7 +28,8 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
   }
   final validator = Validator();
   final filteringFormatter = FilteringFormatter();
-
+  bool passwordObscure = true;
+  
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -168,6 +169,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                             CustomTextFormFieldWidget(
                               controller: controller.password,
                               label: "Senha",
+                              obscureText: passwordObscure,
                               onChanged: (value) => controller.password.text,
                               validator: validator.password,
                               inputFormatters: filteringFormatter.password,
@@ -181,8 +183,15 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                                 top: 40,
                               ),
                               child: VisibleWidget(
-                                  visible: false, onPressed: controller.ontapAux),
-                            )),
+                                  visible: passwordObscure,
+                                  onPressed: () {
+                                    setState(() {
+                                      passwordObscure = !passwordObscure;
+                                    });
+                                  }
+                              ),
+                            )
+                        ),
                       ]),
                       Padding(
                         padding: const EdgeInsets.only(top: 16),
@@ -205,3 +214,4 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
     );
   }
 }
+
