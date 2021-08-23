@@ -1,4 +1,7 @@
+import 'package:budget_raro/modules/login/create_accounting/create_accounting_module.dart';
+import 'package:budget_raro/modules/transactions/create_transaction/create_transaction_module.dart';
 import 'package:budget_raro/modules/transactions/create_transaction/create_transaction_page.dart';
+import 'package:budget_raro/modules/transactions/edit_transaction/edit_transaction_module.dart';
 import 'package:budget_raro/modules/transactions/edit_transaction/edit_transaction_page.dart';
 import 'package:budget_raro/modules/transactions/transactions_controller.dart';
 import 'package:budget_raro/modules/transactions/transactions_page.dart';
@@ -15,13 +18,7 @@ class TransactionsModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute('/', child: (_, __) => TransactionsPage()),
-        ChildRoute('/create',
-            child: (_, args) => CreateTransactionPage(type: args.data)),
-        ChildRoute('/edit',
-            child: (_, args) => EditTransactionPage(
-                type: args.data,
-                value: args.data,
-                title: args.data,
-                date: args.data)),
+        ModuleRoute('/create', module: CreateTransactionModule()),
+        ModuleRoute('/edit', module: EditTransactionModule()),
       ];
 }

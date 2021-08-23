@@ -9,6 +9,21 @@ part of 'login_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$LoginController on _LoginControllerBase, Store {
+  final _$enableAtom = Atom(name: '_LoginControllerBase.enable');
+
+  @override
+  bool get enable {
+    _$enableAtom.reportRead();
+    return super.enable;
+  }
+
+  @override
+  set enable(bool value) {
+    _$enableAtom.reportWrite(value, super.enable, () {
+      super.enable = value;
+    });
+  }
+
   final _$pageControllerAtom =
       Atom(name: '_LoginControllerBase.pageController');
 
@@ -36,6 +51,17 @@ mixin _$LoginController on _LoginControllerBase, Store {
 
   final _$_LoginControllerBaseActionController =
       ActionController(name: '_LoginControllerBase');
+
+  @override
+  void isActive() {
+    final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
+        name: '_LoginControllerBase.isActive');
+    try {
+      return super.isActive();
+    } finally {
+      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic nextPage() {
@@ -95,6 +121,7 @@ mixin _$LoginController on _LoginControllerBase, Store {
   @override
   String toString() {
     return '''
+enable: ${enable},
 pageController: ${pageController}
     ''';
   }

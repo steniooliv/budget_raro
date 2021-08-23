@@ -1,9 +1,12 @@
 import 'package:budget_raro/modules/transactions/transactions_controller.dart';
 import 'package:budget_raro/shared/models/transaction_model.dart';
+import 'package:budget_raro/shared/themes/app_colors.dart';
+import 'package:budget_raro/shared/themes/text_styles.dart';
 import 'package:budget_raro/shared/widgets/button_widget.dart';
 import 'package:budget_raro/shared/widgets/custom_app_bar_balance_widget.dart';
 import 'package:budget_raro/shared/widgets/transactions_card_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class TransactionsPage extends StatefulWidget {
@@ -15,10 +18,15 @@ class TransactionsPage extends StatefulWidget {
 
 class _TransactionsPageState
     extends ModularState<TransactionsPage, TransactionsController> {
-  final PageController _controller = PageController(initialPage: 0);
-  final List<TransactionModel> transactionTest = [];
-  String valor = "0,00";
-  double total = 0;
+  @override
+  void initState() {
+    controller.firebaseRepository.firebaseInitialize();
+    controller.getTransactions(controller.initialMonth);
+    super.initState();
+  }
+
+  GlobalKey<ScaffoldState> _key = GlobalKey();
+  final PageController pageController = PageController(initialPage: 0);
 
   void toCreatePage() {
     Navigator.pushNamed(context, '/create');
@@ -26,57 +34,88 @@ class _TransactionsPageState
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey<ScaffoldState> _key = GlobalKey();
-    return Scaffold(
-      appBar: CustomAppBarBalanceWidget(
-        dropdownDefault: "AGOSTO",
-        pageController: _controller,
-        balance: valor,
-        drawerKey: _key,
-      ),
-      body: PageView(
-        controller: _controller,
-        children: [
-          Stack(children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 16, bottom: 40),
-              child: TransactionsCard(
-                transactions: transactionTest,
-                total: total,
-                transactionType: "entradas",
+    return Observer(
+      builder: (_) => Scaffold(
+        key: _key,
+        appBar: CustomAppBarBalanceWidget(
+          items: controller.months,
+          value: controller.initialMonth,
+          onChange: (String? value) {
+            controller.initialMonth = value!;
+            controller.getTransactions(controller.initialMonth);
+          },
+          onTabAll: () async {
+            await pageController.animateToPage(2,
+                duration: Duration(milliseconds: 500), curve: Curves.ease);
+            setState(() {});
+          },
+          onTabIn: () async {
+            await pageController.animateToPage(0,
+                duration: Duration(milliseconds: 500), curve: Curves.ease);
+            setState(() {});
+          },
+          onTabOut: () async {
+            await pageController.animateToPage(1,
+                duration: Duration(milliseconds: 500), curve: Curves.ease);
+            setState(() {});
+          },
+          pageController: pageController,
+          balance:
+              controller.monthyValue.toStringAsFixed(2).replaceAll('.', ','),
+          drawerKey: _key,
+        ),
+        body: PageView(
+          controller: pageController,
+          scrollDirection: Axis.horizontal,
+          allowImplicitScrolling: false,
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0, bottom: 40.0),
+                child: Flex(direction: Axis.horizontal, children: [
+                  TransactionsCard(
+                    transactions: controller.inTransactions,
+                    total: controller.inValue.toDouble(),
+                    transactionType: "entrada",
+                  ),
+                ]),
               ),
             ),
-            Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: CustomButton.add(onTap: toCreatePage),
-                ))
-          ]),
-          Stack(children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 16, bottom: 40),
-              child: TransactionsCard(
-                transactions: transactionTest,
-                total: total,
-                transactionType: "sáidas",
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0, bottom: 40.0),
+                child: Flex(direction: Axis.horizontal, children: [
+                  TransactionsCard(
+                    transactions: controller.outTransactions,
+                    total: controller.outValue.toDouble(),
+                    transactionType: "saída",
+                  ),
+                ]),
               ),
             ),
-            Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: CustomButton.add(onTap: toCreatePage),
-                ))
-          ]),
-          Padding(
-            padding: const EdgeInsets.only(top: 16, bottom: 40),
-            child: TransactionsCard(
-              transactions: transactionTest,
-              total: total,
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8.0, bottom: 40.0),
+                child: Flex(direction: Axis.horizontal, children: [
+                  TransactionsCard(
+                    transactions: controller.allTransactions,
+                    total:
+                        (controller.inValue + controller.outValue).toDouble(),
+                    transactionType: "geral",
+                  ),
+                ]),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: CustomButton.add(onTap: () {
+          pageController.page == 0 || pageController.page == 2
+              ? Modular.to
+                  .pushNamed('/transactions/create', arguments: 'Entrada')
+              : Modular.to
+                  .pushNamed('/transactions/create', arguments: 'Saida');
+        }),
       ),
     );
   }

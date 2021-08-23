@@ -301,11 +301,8 @@ class _CreateAccountingPageState
                                 text = controller.password.text;
                               },
                               obscureText: true,
-                              validator: (value) {
-                                if (controller.password.text.length < 8) {
-                                  return "campo necessário!";
-                                }
-                              },
+                              validator: validator.password,
+                              keyboardType: TextInputType.visiblePassword,
                               inputFormatters: filteringFormatter.password,
                             )),
                         Padding(
@@ -330,6 +327,7 @@ class _CreateAccountingPageState
                                 }
                               },
                               inputFormatters: filteringFormatter.password,
+                              keyboardType: TextInputType.visiblePassword,
                             )),
                       ],
                     ),

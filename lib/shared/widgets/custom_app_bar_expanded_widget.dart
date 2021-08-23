@@ -1,6 +1,7 @@
 import 'package:budget_raro/shared/themes/app_colors.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class CustomAppBarExpandedWidget extends StatefulWidget
     implements PreferredSizeWidget {
@@ -47,8 +48,7 @@ class _CustomAppBarExpandedWidgetState
                 children: [
                   IconButton(
                       onPressed: () {
-                        Navigator.pop(context);
-                        // widget.drawerKey.currentState!.openDrawer();
+                        Modular.to.pop();
                       },
                       icon: Icon(
                         Icons.arrow_back,

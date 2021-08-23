@@ -7,14 +7,17 @@ class DropdownTransactionsButtonWidget extends StatefulWidget {
   DropdownTransactionsButtonWidget.entry({
     Key? key,
     this.transactionsType = true,
+    this.onChange,
   }) : super(key: key);
 
   DropdownTransactionsButtonWidget.out({
     Key? key,
     this.transactionsType = false,
+    this.onChange,
   }) : super(key: key);
 
   final bool transactionsType;
+  final Function(TransactionTypesModel?)? onChange;
 
   @override
   _DropdownTransactionsButtonStateWidget createState() =>
@@ -50,12 +53,7 @@ class _DropdownTransactionsButtonStateWidget
         height: 1,
         color: Colors.black.withOpacity(0.42),
       ),
-      onChanged: (TransactionTypesModel? selected) {
-        setState(() {
-          transactionSelected =
-              transactions.firstWhere((e) => e.tag == selected!.tag);
-        });
-      },
+      onChanged: widget.onChange,
       selectedItemBuilder: (BuildContext context) {
         return transactions.map<Widget>((TransactionTypesModel item) {
           return Align(
@@ -96,23 +94,62 @@ class _DropdownTransactionsButtonStateWidget
 }
 
 List<TransactionTypesModel> transactionTypeIn = [
-  TransactionTypesModel(tag: "Pix", icon: "assets/images/icons/Pix.png"),
   TransactionTypesModel(
-      tag: "Dinheiro", icon: "assets/images/icons/Dinheiro.png"),
-  TransactionTypesModel(tag: "Boleto", icon: "assets/images/icons/Boleto.png"),
-  TransactionTypesModel(tag: "Ted", icon: "assets/images/icons/Ted.png"),
-  TransactionTypesModel(tag: "Doc", icon: "assets/images/icons/Doc.png"),
+    category: 'pix',
+    tag: "Pix",
+    icon: "assets/images/icons/pix.png",
+  ),
+  TransactionTypesModel(
+    category: 'money',
+    tag: "Dinheiro",
+    icon: "assets/images/icons/money.png",
+  ),
+  TransactionTypesModel(
+    category: 'invoice',
+    tag: "Boleto",
+    icon: "assets/images/icons/invoice.png",
+  ),
+  TransactionTypesModel(
+    category: 'payment',
+    tag: "Ted",
+    icon: "assets/images/icons/payment.png",
+  ),
+  TransactionTypesModel(
+    category: 'payment',
+    tag: "Doc",
+    icon: "assets/images/icons/payment.png",
+  ),
 ];
 
 List<TransactionTypesModel> transactionTypeOut = [
   TransactionTypesModel(
-      tag: "Refeição", icon: "assets/images/icons/Refeicao.png"),
+    category: 'food',
+    tag: "Refeição",
+    icon: "assets/images/icons/food.png",
+  ),
   TransactionTypesModel(
-      tag: "Transporte", icon: "assets/images/icons/Transporte.png"),
+    category: 'transport',
+    tag: "Transporte",
+    icon: "assets/images/icons/transport.png",
+  ),
   TransactionTypesModel(
-      tag: "Educação", icon: "assets/images/icons/Educacao.png"),
-  TransactionTypesModel(tag: "Viagem", icon: "assets/images/icons/Viagem.png"),
+    category: 'education',
+    tag: "Educação",
+    icon: "assets/images/icons/education.png",
+  ),
   TransactionTypesModel(
-      tag: "Pagamentos", icon: "assets/images/icons/Pagamentos.png"),
-  TransactionTypesModel(tag: "Outro", icon: "assets/images/icons/Outro.png"),
+    category: 'travel',
+    tag: "Viagem",
+    icon: "assets/images/icons/travel.png",
+  ),
+  TransactionTypesModel(
+    category: 'payment',
+    tag: "Pagamentos",
+    icon: "assets/images/icons/payments.png",
+  ),
+  TransactionTypesModel(
+    category: 'other',
+    tag: "Outro",
+    icon: "assets/images/icons/other.png",
+  ),
 ];

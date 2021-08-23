@@ -1,21 +1,34 @@
 import 'package:budget_raro/shared/themes/app_colors.dart';
 import 'package:budget_raro/shared/themes/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class CustomAppBarBalanceWidget extends StatefulWidget
     implements PreferredSizeWidget {
-  late final String dropdownDefault;
   final String balance;
-  final PageController pageController;
 
+  final PageController pageController;
   final GlobalKey<ScaffoldState> drawerKey;
+
+  final Function(String?)? onChange;
+  final List<String> items;
+  final String? value;
+
+  final Function()? onTabIn;
+  final Function()? onTabOut;
+  final Function()? onTabAll;
 
   CustomAppBarBalanceWidget({
     Key? key,
     required this.drawerKey,
-    required this.dropdownDefault,
     required this.balance,
     required this.pageController,
+    this.onChange,
+    this.value,
+    this.onTabIn,
+    this.onTabOut,
+    this.onTabAll,
+    required this.items,
   })  : preferredSize = Size.fromHeight(190),
         super(key: key);
 
@@ -28,23 +41,6 @@ class CustomAppBarBalanceWidget extends StatefulWidget
 }
 
 class _CustomAppBarBalanceWidgetState extends State<CustomAppBarBalanceWidget> {
-  List<String> _months = [
-    'JANEIRO',
-    'FEVEREIRO',
-    'MARÇO',
-    'ABRIL',
-    'MAIO',
-    'JUNHO',
-    'JULHO',
-    'AGOSTO',
-    'SETEMBRO',
-    'OUTUBRO',
-    'NOVEMBRO',
-    'DEZEMBRO'
-  ];
-
-  late String dropdownValue = widget.dropdownDefault.toString();
-
   @override
   Widget build(BuildContext context) {
     return PreferredSize(
@@ -68,10 +64,10 @@ class _CustomAppBarBalanceWidgetState extends State<CustomAppBarBalanceWidget> {
                 children: [
                   IconButton(
                       onPressed: () {
-                        widget.drawerKey.currentState!.openDrawer();
+                        Modular.to.navigate('/home');
                       },
                       icon: Icon(
-                        Icons.menu,
+                        Icons.arrow_back,
                         color: AppColors.white,
                       )),
                   Spacer(),
@@ -86,14 +82,14 @@ class _CustomAppBarBalanceWidgetState extends State<CustomAppBarBalanceWidget> {
                       child: DropdownButton<String>(
                         dropdownColor: AppColors.purple.withOpacity(0.9),
                         menuMaxHeight: MediaQuery.of(context).size.height / 2,
-                        value: dropdownValue,
+                        value: widget.value,
                         underline: SizedBox(),
                         isDense: true,
                         icon: Icon(
                           Icons.keyboard_arrow_down_rounded,
                           color: AppColors.white,
                         ),
-                        items: _months.map((String value) {
+                        items: widget.items.map((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
                             child: Text(
@@ -102,13 +98,7 @@ class _CustomAppBarBalanceWidgetState extends State<CustomAppBarBalanceWidget> {
                             ),
                           );
                         }).toList(),
-                        onChanged: (String? newValue) {
-                          setState(
-                            () {
-                              dropdownValue = newValue!;
-                            },
-                          );
-                        },
+                        onChanged: widget.onChange,
                       ),
                     ),
                   ),
@@ -137,13 +127,7 @@ class _CustomAppBarBalanceWidgetState extends State<CustomAppBarBalanceWidget> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: () {
-                      widget.pageController.animateToPage(
-                        0,
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.easeIn,
-                      );
-                    },
+                    onTap: widget.onTabIn,
                     child: Text(
                       'Entrada',
                       style: widget.pageController.page == 0
@@ -156,13 +140,7 @@ class _CustomAppBarBalanceWidgetState extends State<CustomAppBarBalanceWidget> {
                     style: TextStyles.tabActive,
                   ),
                   InkWell(
-                    onTap: () {
-                      widget.pageController.animateToPage(
-                        1,
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.easeIn,
-                      );
-                    },
+                    onTap: widget.onTabOut,
                     child: Text(
                       'Saída',
                       style: widget.pageController.page == 1
@@ -175,13 +153,7 @@ class _CustomAppBarBalanceWidgetState extends State<CustomAppBarBalanceWidget> {
                     style: TextStyles.tabActive,
                   ),
                   InkWell(
-                    onTap: () {
-                      widget.pageController.animateToPage(
-                        2,
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.easeIn,
-                      );
-                    },
+                    onTap: widget.onTabAll,
                     child: Text(
                       'Todas',
                       style: widget.pageController.page == 2

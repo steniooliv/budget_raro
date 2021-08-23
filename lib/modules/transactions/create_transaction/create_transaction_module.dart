@@ -14,7 +14,7 @@ class CreateTransactionModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute('/',
             child: (_, args) => CreateTransactionPage(
-                  type: args.toString(),
+                  type: args.data.toString(),
                 )),
       ];
 }

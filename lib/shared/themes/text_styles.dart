@@ -103,7 +103,6 @@ class TextStyles {
   static final inputDate = GoogleFonts.roboto(
     fontSize: 14,
     fontWeight: FontWeight.w500,
-    height: 24,
     color: AppColors.purple,
   );
   static final textButton = GoogleFonts.roboto(
