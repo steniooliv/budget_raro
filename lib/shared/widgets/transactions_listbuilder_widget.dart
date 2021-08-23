@@ -21,7 +21,7 @@ class TransactionListBuilderWidget extends StatelessWidget {
           itemBuilder: (context, i) {
             return ListTile(
               title: Text(
-                "${transactions[i].category} ${transactions[i].description}",
+                "${transactions[i].description}",
                 style: TextStyles.inputTextMedium,
               ),
               subtitle: Text(
